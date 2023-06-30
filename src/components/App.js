@@ -1,37 +1,53 @@
-import React, { useEffect, useState } from 'react'
-import '../styles/App.css';
-const App = () => {
+import React, { useState } from "react";
+import "./styles/App.css";
 
-  const [count, setCount] = useState(1);
-  const [tempClass, setTempClass] = useState('');
+function App() {
+  // Declare a state variable for the counter value
+  const [counter, setCounter] = useState(1);
 
-  function increaseFn() {
-    setCount(count => count + 1);
-  }
+  // Define a function to increment the counter
+  const increment = () => {
+    setCounter(counter + 1);
+  };
 
-  function decreaseFn() {
-    setCount(count => count - 1);
-  }
+  // Define a function to decrement the counter
+  const decrement = () => {
+    setCounter(counter - 1);
+  };
 
-  useEffect(() => {
-    if (count % 5 == 0 && count % 3 == 0) {
-      setTempClass('fizzbuzz')
-    } else if (count % 3 == 0) {
-      setTempClass('fizz')
-    } else if (count % 5 == 0) {
-      setTempClass('buzz')
-    } else {
-      setTempClass('normal')
+  // Define a function to determine the class name for the counter div
+  const getClassName = () => {
+    // If the counter is divisible by both 3 and 5, return "fizzbuzz"
+    if (counter % 3 === 0 && counter % 5 === 0) {
+      return "fizzbuzz";
     }
-  })
+    // If the counter is divisible by 3, return "fizz"
+    if (counter % 3 === 0) {
+      return "fizz";
+    }
+    // If the counter is divisible by 5, return "buzz"
+    if (counter % 5 === 0) {
+      return "buzz";
+    }
+    // Otherwise, return "normal"
+    return "normal";
+  };
 
   return (
-    <div id="main">
-      <button onClick={increaseFn}>Increase</button>
-      <div className={tempClass}>{count}</div>
-      <button onClick={decreaseFn}>Decrease</button>
+    <div className="App">
+      {/* Render the counter div with the dynamic class name */}
+      <div id="counter" className={getClassName()}>
+        {counter}
+      </div>
+      {/* Render the increment and decrement buttons */}
+      <button id="increment" onClick={increment}>
+        Increment
+      </button>
+      <button id="decrement" onClick={decrement}>
+        Decrement
+      </button>
     </div>
-  )
+  );
 }
 
 export default App;
