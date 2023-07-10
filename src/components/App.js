@@ -1,53 +1,57 @@
-import React, { useState } from "react";
-import "./styles/App.css";
+import React from "react";
 
-function App() {
-  // Declare a state variable for the counter value
-  const [counter, setCounter] = useState(1);
+import "../styles/App.css";
 
-  // Define a function to increment the counter
-  const increment = () => {
-    setCounter(counter + 1);
-  };
+import { useState } from "react";
 
-  // Define a function to decrement the counter
-  const decrement = () => {
-    setCounter(counter - 1);
-  };
+const App = () => {
 
-  // Define a function to determine the class name for the counter div
-  const getClassName = () => {
-    // If the counter is divisible by both 3 and 5, return "fizzbuzz"
-    if (counter % 3 === 0 && counter % 5 === 0) {
-      return "fizzbuzz";
-    }
-    // If the counter is divisible by 3, return "fizz"
-    if (counter % 3 === 0) {
-      return "fizz";
-    }
-    // If the counter is divisible by 5, return "buzz"
-    if (counter % 5 === 0) {
-      return "buzz";
-    }
-    // Otherwise, return "normal"
-    return "normal";
-  };
+// let[inc,setInc]=useState(0);
 
-  return (
-    <div className="App">
-      {/* Render the counter div with the dynamic class name */}
-      <div id="counter" className={getClassName()}>
-        {counter}
-      </div>
-      {/* Render the increment and decrement buttons */}
-      <button id="increment" onClick={increment}>
-        Increment
-      </button>
-      <button id="decrement" onClick={decrement}>
-        Decrement
-      </button>
-    </div>
-  );
-}
+let [count, setCount] = useState(1);
+
+return (
+
+<div id="main">
+
+<button
+
+id="increment"
+
+onClick={() => {
+
+setCount((count) => count + 1);
+
+}}
+
+>
+
+Increment
+
+</button>
+
+<div id="counter" className={ count % 3 === 0 && count % 5 === 0 ? "fizzbuzz" : count % 3 === 0 ? "fizz" : count % 5 === 0 ? "buzz" : "normal" } >{count}</div>
+
+<button
+
+id="decrement"
+
+onClick={() => {
+
+setCount((count) => count - 1);
+
+}}
+
+>
+
+Decrement
+
+</button>
+
+</div>
+
+);
+
+};
 
 export default App;
